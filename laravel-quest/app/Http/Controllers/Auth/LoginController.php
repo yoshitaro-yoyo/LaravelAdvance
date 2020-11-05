@@ -18,14 +18,14 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers; //トレイト
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,3 +37,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 }
+
+
+/*
+上記コードは 「logoutアクションを除いて、ユーザはguestでないといけない」という条件でないとログイン認証ができないという意味
+つまり「まだログイン認証されていないユーザだけが、ログインできる」ということ。この条件に合致しない場合、ログイン認証しようとしても別ページに飛ばされる。
+*/
