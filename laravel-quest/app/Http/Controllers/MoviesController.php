@@ -38,7 +38,7 @@ class MoviesController extends Controller
 
         $this->validate($request,[
             'url' => 'required|max:11',
-            'comment' => 'max:36',
+            'comment' => 'max:50',
         ]);
             //バリデーションを掛けることで、URL入力を必須とし、URL・コメントのそれぞれの最大入力文字数を制限
 
@@ -59,7 +59,7 @@ class MoviesController extends Controller
         if (\Auth::id() == $movie->user_id) {
             $movie->delete();
         }
-        //削除実行処理を意味する、$movie->delete(); は、if文で囲むことにより自分以外の他のユーザの動画を勝手に削除されてしまうことがないように
+        //削��実行処理を意味する、$movie->delete(); は、if文で囲むことにより自分以外の他のユーザの動画を勝手に削除されてしまうことがないように
         //ログインしているユーザIDと動画を所有しているユーザのIDが一致している場合のみ、削除処理を実行するように記述
 
         return back();

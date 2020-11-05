@@ -41,4 +41,28 @@ class UsersController extends Controller
     }
     //counts関数をshowアクションの$dataに足す。showアクションをindexアクションの下に記述。
     //$data += $this->counts($user);と記述すればこれだけでcounts($user)の戻り値が$dataに追加される。
+    
+    public function rename(Request $request)
+    {
+        $this->validate($request,[
+                'channel' => 'required|max:20',
+                'name' => 'required|max:15',
+        ]);
+
+        $user=\Auth::user();
+        $movies = $user->movies()->orderBy('id', 'desc')->paginate(9);
+
+        $user->channel = $request->channel;
+        $user->name = $request->name;
+        $user->save();
+        
+        $data=[
+            'user' => $user,
+            'movies' => $movies,
+        ];
+        
+        $data += $this->counts($user);
+
+        return view('users.show',$data);
+    }
 }

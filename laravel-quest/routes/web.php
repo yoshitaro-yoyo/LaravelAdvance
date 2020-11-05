@@ -34,6 +34,8 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 //将来的にactionを増やす可能性があるのでresource(短縮形)を使用している。
      
 Route::group(['middleware' => 'auth'], function () {
+    //チャンネル名・ユーザ名を変更するrenameルーティング「Route::groupの中の記述」ログイン済みのユーザしか、名前変更のrenameルーティングにはアクセスできないように
+    Route::put('users', 'UsersController@rename')->name('rename');
     Route::resource('movies', 'MoviesController', ['only' => ['create', 'store', 'destroy']]);
 });
 //['m iddleware' => 'auth']としログイン認証を通ったユーザのみ、内部のルーティングにアクセスできるようにしている。つまり、
