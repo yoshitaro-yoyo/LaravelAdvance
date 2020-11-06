@@ -31,9 +31,9 @@ class User extends Authenticatable
     public function movies()
     {
         return $this->hasMany(Movie::class);
+    }
 //「User（this）モデルがMovieモデルを所有している」ということを明示する役割があり、実際のコード記述上でも、下記のようなコードで「Userインスタンスが所有しているMovieを取得」できる.   
 //$user->movies()->get();  $user->movies; userの所有している情報を全て抽出できるようになる。
-    }
     
 //登録機能が成立しているか tinker でデータベースの接続を確認してみる tinker : Laravelプロジェクトの「処理→実行→実行結果の表示」まで行ってくれる環境
 //実際のウェブアプリ上で処理を実行しなくてもデータベースにログインして直接操作しなくても簡単に処理を行いその結果の成否を確認出来る。
@@ -71,8 +71,8 @@ followings()で「あるユーザがフォローしているユーザ」を取�
     public function is_following($userId)
     {
         return $this->followings()->where('follow_id',$userId)->exists();
-//上記のfollowings関数ですでにフォローした人の'follow_id'とこれからフォローする人の$userIdが重複しないか判定。exits関数でかぶればtrueが返る。
     }
+//上記のfollowings関数ですでにフォローした人の'follow_id'とこれからフォローする人の$userIdが重複しないか判定。exits関数でかぶればtrueが返る。
     
     public function follow($userId)
     {

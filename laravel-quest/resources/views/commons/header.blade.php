@@ -11,16 +11,16 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="nav navbar-nav navbar-right">
-                        {{-- Authとはファサードと言われる。通常長��と表現しないといけないクラスを短縮して記述できる --}}
-                        {{-- Illuminate\Support\Facades\Auth::class ⇒ Auth : ファサードは aliases 内で設定。laravel-quest＞config＞app.php --}}
-                        {{-- Authファサードを利用した関数 ⇒ Auth::check()：ユーザがログイン状態にあるかどうかを判定する|Auth::user()|ログイン中のユーザを取得する  --}}
-                        {{-- DB::connection()や、Route::getもDBファサードやRouteファサード|Laravelドキュメント https://readouble.com/laravel/5.5/ja/facades.html --}}
+{{-- Authとはファサードと言われる。通常長��と表現しないといけないクラスを短縮して記述できる --}}
+{{-- Illuminate\Support\Facades\Auth::class ⇒ Auth : ファサードは aliases 内で設定。laravel-quest＞config＞app.php --}}
+{{-- Authファサードを利用した関数 ⇒ Auth::check()：ユーザがログイン状態にあるかどうかを判定する|Auth::user()|ログイン中のユーザを取得する  --}}
+{{-- DB::connection()や、Route::getもDBファサードやRouteファサード|Laravelドキュメント https://readouble.com/laravel/5.5/ja/facades.html --}}
                 @if (Auth::check())
                 
                     <li class="nav-item">{!! link_to_route('logout', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('users.show','マイページ',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('movies.create','動画を登録する',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
-                    {{--movies.create（ルーティング名）アクションにリンクされていて、パラメータに渡したい名。['id'=>Auth::id()]でログインしているユーザのIDを渡すことになる--}}
+{{--movies.create（ルーティング名）アクションにリンクされていて、パラメータに渡したい名。['id'=>Auth::id()]でログインしているユーザのIDを渡すことになる--}}
                     
                 @else
                 

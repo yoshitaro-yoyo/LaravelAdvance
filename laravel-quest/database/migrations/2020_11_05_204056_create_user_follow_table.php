@@ -19,12 +19,12 @@ class CreateUserFollowTable extends Migration
             $table->integer('follow_id')->unsigned()->index();
             $table->timestamps();
             
-            // 外部キー制約
+// 外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('follow_id')->references('id')->on('users')->onDelete('cascade');
-            //follow_idが外部キー制約されreferences('id')と結びついている。そのIDはusersテーブルに有る。関連ユーザ情報が消えた場合中間テーブルも同時に消す。
+//follow_idが外部キー制約されreferences('id')と結びついている。そのIDはusersテーブルに有る。関連ユーザ情報が消えた場合中間テーブルも同時に消す。
             
-            // 組み合わせのダブりを禁止 unique 一意の
+// 組み合わせのダブりを禁止 unique 一意の
             $table->unique(['user_id', 'follow_id']);
         });
     }
